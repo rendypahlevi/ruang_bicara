@@ -20,8 +20,8 @@ class LoginView extends GetView<LoginController> {
           crossAxisAlignment:
               CrossAxisAlignment.start, // Untuk menyelaraskan ke kiri
           children: [
-            SizedBox(height: 60),
-            Text(
+            const SizedBox(height: 60),
+            const Text(
               'Pilih Sebagai',
               style: TextStyle(
                 fontSize: 50, // Ukuran font lebih besar
@@ -29,8 +29,8 @@ class LoginView extends GetView<LoginController> {
               ),
               textAlign: TextAlign.left, // Menyelaraskan teks ke kiri
             ),
-            SizedBox(height: 8), // Spasi antara teks
-            Text(
+            const SizedBox(height: 8), // Spasi antara teks
+            const Text(
               'Apa Anda',
               style: TextStyle(
                 fontSize: 50, // Ukuran font lebih besar
@@ -38,8 +38,8 @@ class LoginView extends GetView<LoginController> {
               ),
               textAlign: TextAlign.left, // Menyelaraskan teks ke kiri
             ),
-            SizedBox(height: 8), // Spasi antara teks
-            Text(
+            const SizedBox(height: 8), // Spasi antara teks
+            const Text(
               'Login',
               style: TextStyle(
                 fontSize: 50, // Ukuran font lebih kecil
@@ -47,35 +47,35 @@ class LoginView extends GetView<LoginController> {
               ),
               textAlign: TextAlign.left, // Menyelaraskan teks ke kiri
             ),
-            SizedBox(height: 50), // Spasi sebelum tombol
+            const SizedBox(height: 50), // Spasi sebelum tombol
             ElevatedButton(
               onPressed: () {
                 Get.toNamed(Routes.LOGIN_GURU);
               },
-              child: Text('Guru Pembimbing'),
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
+                minimumSize: const Size(double.infinity, 50),
                 backgroundColor: Colors.blue,
                 foregroundColor: Colors.white,
-                textStyle: TextStyle(fontSize: 18),
+                textStyle: const TextStyle(fontSize: 18),
               ),
+              child: const Text('Konselor'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             const Center(
               child: Text('atau', style: TextStyle(fontSize: 16)),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 Get.toNamed(Routes.LOGIN_SISWA);
               },
-              child: Text('Siswa'),
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
+                minimumSize: const Size(double.infinity, 50),
                 backgroundColor: Colors.blue,
                 foregroundColor: Colors.white,
-                textStyle: TextStyle(fontSize: 18),
+                textStyle: const TextStyle(fontSize: 18),
               ),
+              child: const Text('Siswa'),
             ),
           ],
         ),

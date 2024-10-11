@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:ruang_bicara/app/routes/app_pages.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,12 +16,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +31,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Center(
+            const Center(
               child: CircleAvatar(
                 radius: 120,
                 backgroundImage: AssetImage('assets/images/logo.png'),
@@ -35,20 +39,20 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text(
+            const Text(
               'Ruang Bicara',
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text(
+            const Text(
               'Bimbingan konseling online terpercaya!',
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
                 // Navigasi ke halaman login menggunakan GetX
@@ -56,12 +60,13 @@ class HomeScreen extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 "Let's get started",
                 style: TextStyle(
                   fontSize: 16,

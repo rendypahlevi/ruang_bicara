@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoginGuru extends StatefulWidget {
+  const LoginGuru({super.key});
+
   @override
   _LoginGuruState createState() => _LoginGuruState();
 }
@@ -22,26 +24,26 @@ class _LoginGuruState extends State<LoginGuru> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Login",
               style: TextStyle(
                 fontSize: 50,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 5),
-            Text(
+            const SizedBox(height: 5),
+            const Text(
               "Account",
               style: TextStyle(
                 fontSize: 50,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 37),
+            const SizedBox(height: 37),
             TextField(
               decoration: InputDecoration(
                 labelText: "NIP",
-                labelStyle: TextStyle(color: Colors.grey),
+                labelStyle: const TextStyle(color: Colors.grey),
                 filled: true,
                 fillColor: Colors.grey.shade200,
                 border: OutlineInputBorder(
@@ -50,12 +52,12 @@ class _LoginGuruState extends State<LoginGuru> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               obscureText: !_isPasswordVisible,
               decoration: InputDecoration(
                 labelText: "Password",
-                labelStyle: TextStyle(color: Colors.grey),
+                labelStyle: const TextStyle(color: Colors.grey),
                 filled: true,
                 fillColor: Colors.grey.shade200,
                 border: OutlineInputBorder(
@@ -76,45 +78,25 @@ class _LoginGuruState extends State<LoginGuru> {
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   // Tambahkan fungsionalitas login di sini
                 },
-                child: Text("Login"),
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   backgroundColor: Colors.blue,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+                child: const Text("Login"),
               ),
             ),
-            SizedBox(height: 20),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("I don't have an account"),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
-                      );
-                    },
-                    child: Text(
-                      "Register",
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

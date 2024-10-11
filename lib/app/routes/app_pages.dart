@@ -1,8 +1,15 @@
 import 'package:get/get.dart';
-import 'package:ruang_bicara/app/modules/login/views/login_guru.dart';
-import 'package:ruang_bicara/app/modules/login/views/register_page.dart';
+
+import '../modules/chat/bindings/chat_binding.dart';
+import '../modules/chat/views/chat_view.dart';
+import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_guru.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/login/views/register_page.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
+
 import '../modules/login/views/login_siswa.dart'; // Ubah ke LoginSiswa
 
 part 'app_routes.dart';
@@ -18,15 +25,29 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LOGIN_SISWA, // Rute baru untuk LoginSiswa
-      page: () => LoginSiswa(), // Ubah ke LoginSiswa
+      page: () => const LoginSiswa(), // Ubah ke LoginSiswa
     ),
     GetPage(
       name: _Paths.LOGIN_GURU, // Rute baru untuk LoginSiswa
-      page: () => LoginGuru(), // Ubah ke LoginSiswa
+      page: () => const LoginGuru(), // Ubah ke LoginSiswa
     ),
     GetPage(
       name: _Paths.REGISTER, // Rute baru untuk LoginSiswa
-      page: () => RegisterPage(), // Ubah ke LoginSiswa
+      page: () => const RegisterPage(), // Ubah ke LoginSiswa
+    ),
+    GetPage(
+      name: _Paths.HOME,
+      page: () => const HomeView(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHAT,
+      page: () => const ChatView(),
+      binding: ChatBinding(),
     ),
   ];
 }

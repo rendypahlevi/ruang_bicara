@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264695457696",
+    "project_id": "ruang-bicara-96ea5",
+    "storage_bucket": "ruang-bicara-96ea5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264695457696:android:f489660b75ee3b2a1ce6c5",
+        "android_client_info": {
+          "package_name": "com.ruangbicara.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBbOjvyvs6PJdEI5U72XgSCwKzXk1Hi_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

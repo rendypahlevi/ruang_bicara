@@ -7,7 +7,9 @@ abstract class Routes {
   static const LOGIN_SISWA = _Paths.LOGIN_SISWA;
   static const LOGIN_GURU = _Paths.LOGIN_GURU;
   static const REGISTER = _Paths.REGISTER;
-  static var HOME;
+  static const HOME = _Paths.HOME;
+  static const PROFILE = _Paths.PROFILE;
+  static const CHAT = _Paths.CHAT;
 }
 
 abstract class _Paths {
@@ -16,4 +18,7 @@ abstract class _Paths {
   static const LOGIN_SISWA = '/login_siswa';
   static const LOGIN_GURU = '/login_guru';
   static const REGISTER = '/register';
+  static const HOME = '/home';
+  static const PROFILE = '/profile';
+  static const CHAT = '/chat';
 }

@@ -1,15 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:ruang_bicara/app/routes/app_pages.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ruang_bicara/app/modules/login/views/register_page.dart';
 
 class LoginSiswa extends StatefulWidget {
+  const LoginSiswa({super.key});
+
   @override
   _LoginSiswaState createState() => _LoginSiswaState();
 }
 
 class _LoginSiswaState extends State<LoginSiswa> {
-  bool _isPasswordVisible = false; // untuk toggle visibilitas password
+  final TextEditingController _nimController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Fungsi untuk login
+  Future<void> loginWithNIM() async {
+    String nim = _nimController.text.trim();
+    String password = _passwordController.text.trim();
+
+    if (nim.isEmpty || password.isEmpty) {
+      Get.snackbar('Error', 'NIM dan Password harus diisi.');
+      return;
+    }
+
+    try {
+      // Ambil data pengguna berdasarkan NIM
+      QuerySnapshot userQuery = await _firestore
+          .collection('users')
+          .where('nim', isEqualTo: nim)
+          .get();
+
+      if (userQuery.docs.isEmpty) {
+        Get.snackbar('Error', 'NIM tidak ditemukan.');
+      } else {
+        var userData = userQuery.docs.first.data() as Map<String, dynamic>;
+        if (userData['password'] == password) {
+          Get.snackbar('Success', 'Login berhasil.');
+          // Arahkan ke halaman berikutnya setelah login sukses
+          Get.toNamed('/home'); // Contoh navigasi ke halaman home setelah login
+        } else {
+          Get.snackbar('Error', 'Password salah.');
+        }
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Terjadi kesalahan: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +56,7 @@ class _LoginSiswaState extends State<LoginSiswa> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        automaticallyImplyLeading: false, // Tidak ada tombol back
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -25,26 +64,27 @@ class _LoginSiswaState extends State<LoginSiswa> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Login",
               style: TextStyle(
                 fontSize: 50,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 5),
-            Text(
+            const SizedBox(height: 5),
+            const Text(
               "Account",
               style: TextStyle(
                 fontSize: 50,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 37),
+            const SizedBox(height: 37),
             TextField(
+              controller: _nimController,
               decoration: InputDecoration(
                 labelText: "NIM",
-                labelStyle: TextStyle(color: Colors.grey),
+                labelStyle: const TextStyle(color: Colors.grey),
                 filled: true,
                 fillColor: Colors.grey.shade200,
                 border: OutlineInputBorder(
@@ -53,66 +93,53 @@ class _LoginSiswaState extends State<LoginSiswa> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
-              obscureText: !_isPasswordVisible,
+              controller: _passwordController,
+              obscureText: true,
               decoration: InputDecoration(
                 labelText: "Password",
-                labelStyle: TextStyle(color: Colors.grey),
+                labelStyle: const TextStyle(color: Colors.grey),
                 filled: true,
                 fillColor: Colors.grey.shade200,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
                 ),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _isPasswordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _isPasswordVisible = !_isPasswordVisible;
-                    });
-                  },
-                ),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  // Tambahkan fungsionalitas login di sini
-                },
-                child: Text("Login"),
+                onPressed: loginWithNIM,
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   backgroundColor: Colors.blue,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+                child: const Text("Login"),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("I already have an account"),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(
-                          Routes.REGISTER); // Navigasi ke halaman register
+                  const Text("I don't have an account"),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                      );
                     },
-                    child: Text(
-                      " Register", // Tambahkan spasi di depan untuk jarak
-                      style: TextStyle(
-                        color: Colors.blue,
-                      ),
+                    child: const Text(
+                      "Register",
+                      style: TextStyle(color: Colors.blue),
                     ),
                   ),
                 ],
@@ -123,6 +150,4 @@ class _LoginSiswaState extends State<LoginSiswa> {
       ),
     );
   }
-
-  RegisterPage() {}
 }
